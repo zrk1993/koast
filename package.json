@@ -1,0 +1,39 @@
+{
+  "name": "koawa",
+  "version": "1.0.0",
+  "description": "A suite of Koa utilities allowing for quicker bootstrapping.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zrk1993/koawa.git"
+  },
+  "keywords": [
+    "koa"
+  ],
+  "author": "kun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zrk1993/koawa/issues"
+  },
+  "homepage": "https://github.com/zrk1993/koawa#readme",
+  "dependencies": {
+    "joi": "^17.4.2",
+    "joi-to-json-schema": "^5.1.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
+    "reflect-metadata": "^0.1.13",
+    "swagger-ui-dist": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/joi": "^17.2.3",
+    "@types/koa": "^2.13.4",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
