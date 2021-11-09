@@ -14,7 +14,7 @@ import {
   METADATA_API_TAG,
 } from '../constants';
 
-const convert = require('joi-to-json-schema');
+const convert = require('joi-to-json')
 
 export interface ISwaggerOption {
   url: string;

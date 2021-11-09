@@ -21,6 +21,7 @@
   "homepage": "https://github.com/zrk1993/koawa#readme",
   "dependencies": {
     "joi": "^17.4.2",
+    "joi-to-json": "^2.1.1",
     "joi-to-json-schema": "^5.1.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",

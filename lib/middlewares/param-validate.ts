@@ -17,7 +17,9 @@ export function ParamValidate(schema: joi.AnySchema, option: { type: string }): 
   return async (ctx: Koa.Context | any, next) => {
     const data = option.type === 'query' ? ctx.request.query : ctx.request.body;
     const result = schema.validate(data, joiOptions)
-    if (result.error === null) {
+    if (result.error) {
+      throw result.error;
+    } else {
       ctx.reqData = result.value;
       if (option.type === 'query') {
         ctx.request.query = result.value;
@@ -25,8 +27,6 @@ export function ParamValidate(schema: joi.AnySchema, option: { type: string }): 
         ctx.request.body = result.value;
       }
       await next();
-    } else {
-      throw result.error;
     }
   };
 }
