@@ -2,9 +2,11 @@
   "name": "koawa",
   "version": "1.0.0",
   "description": "A suite of Koa utilities allowing for quicker bootstrapping.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "lib/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
