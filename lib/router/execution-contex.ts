@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import * as Koa from 'koa';
+import Koa from 'koa';
 import { METADATA_ROUTER_PARAMS, METADATA_ROUTER_RENDER_VIEW } from '../constants';
 
 export class ExecutionContex {
@@ -15,7 +15,7 @@ export class ExecutionContex {
   }
 
   create(propertyKey: string): any {
-    return async (ctx: any, next: () => void) => {
+    return async (ctx: any) => {
       const params: any[] = this.getRouterHandlerParams(ctx, propertyKey) || [];
 
       try {
@@ -46,6 +46,6 @@ export class ExecutionContex {
     param: { index: number; convertFunc: (ctx: Koa.Context, data?: any) => any; data: any },
     ctx: Koa.Context | any,
   ): any {
-    return param.convertFunc(ctx);
+    return param.convertFunc(ctx, param.data);
   }
 }

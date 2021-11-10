@@ -17,6 +17,6 @@ export const Query = createParamDecorator((ctx, data) => {
 });
 
 export const Body = createParamDecorator((ctx, data) => {
-  const body = ctx.request.body;
+  const body = ctx.request['body'];
   return data && body ? body[data] : body;
 });

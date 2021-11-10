@@ -1,17 +1,16 @@
-import { Koawa, useSwaggerApi } from '../lib/index';
-import controller from './controller';
+import { Koawa } from '../lib/index';
+import routers from './controller';
 
 async function main() {
   const app = new Koawa();
 
-  useSwaggerApi(app, [controller], {
-    url: '/swagger-api/doc',
-    prefix: '/swagger-ui',
+  app.useSwagger([routers])
+  console.log('swagger address http://localhost:3000/swagger-ui/index.html')
+
+  app.useRouter([routers]);
+  app.listen(3000, () => {
+    console.log('server start on http://localhost:3000')
   });
-
-  app.registerRouter([controller]);
-
-  app.listen(3000);
 }
 
 main()

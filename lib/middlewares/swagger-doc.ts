@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import * as Koa from 'koa';
+import Koa from 'koa';
 import * as fs from 'fs';
 import * as path from 'path';
 import mount from 'koa-mount';

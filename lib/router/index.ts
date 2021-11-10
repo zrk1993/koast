@@ -1,6 +1,6 @@
 import 'reflect-metadata';
+import Koa from 'koa';
 import KoaRouter from 'koa-router';
-import * as Koa from 'koa';
 import { ExecutionContex } from './execution-contex';
 import { ParamValidate } from '../middlewares/param-validate';
 
