@@ -18,7 +18,7 @@ class ExecutionContex {
         this.contextInstance = new ContextClass(...ContextClassArgs);
     }
     create(propertyKey) {
-        return (ctx, next) => __awaiter(this, void 0, void 0, function* () {
+        return (ctx) => __awaiter(this, void 0, void 0, function* () {
             const params = this.getRouterHandlerParams(ctx, propertyKey) || [];
             try {
                 const response = yield this.contextInstance[propertyKey].call(this.contextInstance, ...params);
@@ -41,7 +41,7 @@ class ExecutionContex {
         return results;
     }
     convertParamDecorator(param, ctx) {
-        return param.convertFunc(ctx);
+        return param.convertFunc(ctx, param.data);
     }
 }
 exports.ExecutionContex = ExecutionContex;

@@ -15,7 +15,7 @@ exports.Query = (0, param_decorator_tool_1.createParamDecorator)((ctx, data) => 
     return data && ctx.request.query ? ctx.request.query[data] : ctx.request.query;
 });
 exports.Body = (0, param_decorator_tool_1.createParamDecorator)((ctx, data) => {
-    const body = ctx.request.body;
+    const body = ctx.request['body'];
     return data && body ? body[data] : body;
 });
 //# sourceMappingURL=request-params.js.map

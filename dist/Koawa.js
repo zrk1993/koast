@@ -7,14 +7,21 @@ exports.Koawa = void 0;
 const koa_1 = __importDefault(require("koa"));
 const koa_bodyparser_1 = __importDefault(require("koa-bodyparser"));
 const router_1 = require("./router");
+const swagger_doc_1 = require("./middlewares/swagger-doc");
 class Koawa extends koa_1.default {
     constructor(options = {}) {
         super();
         this.use((0, koa_bodyparser_1.default)());
     }
-    registerRouter(routers) {
+    useRouter(routers) {
         const myRouter = new router_1.MyRouter(routers);
         myRouter.routes(this);
+    }
+    useSwagger(routers) {
+        (0, swagger_doc_1.useSwaggerApi)(this, routers, {
+            url: '/swagger-api/doc',
+            prefix: '/swagger-ui',
+        });
     }
 }
 exports.Koawa = Koawa;

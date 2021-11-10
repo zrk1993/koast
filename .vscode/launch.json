@@ -10,7 +10,7 @@
         "request": "launch",
         "env": { "DEBUG": "app*" },
         "args": [
-          "${workspaceRoot}/test/main.ts" // 入口文件
+          "${workspaceRoot}/sample/main.ts" // 入口文件
         ],
         "runtimeArgs": [
           "--nolazy",

@@ -17,7 +17,6 @@ exports.joi = void 0;
 const joi_1 = __importDefault(require("joi"));
 __exportStar(require("./decorators"), exports);
 __exportStar(require("./Koawa"), exports);
-__exportStar(require("./middlewares/swagger-doc"), exports);
 exports.joi = joi_1.default;
 ;
 //# sourceMappingURL=index.js.map
