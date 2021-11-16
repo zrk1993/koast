@@ -1,8 +1,7 @@
 import 'reflect-metadata';
 import Koa from 'koa';
 import KoaRouter from 'koa-router';
-import { ExecutionContex } from './execution-contex';
-import { ParamValidate } from '../middlewares/param-validate';
+import { ParamValidate } from './middlewares/param-validate';
 
 import {
   METADATA_ROUTER_METHOD,
@@ -10,7 +9,8 @@ import {
   METADATA_ROUTER_MIDDLEWARE,
   METADATA_ROUTER_BODY_SCHAME,
   METADATA_ROUTER_QUERY_SCHAME,
-} from '../constants';
+  METADATA_ROUTER_PARAMS
+} from './constants';
 
 export class MyRouter {
   private readonly routers: any[];
@@ -31,7 +31,7 @@ export class MyRouter {
   }
 
   private registerRouter(Router: any) {
-    const executionContex = new ExecutionContex(Router);
+    const routerInstance = new Router();
     const routerMiddlewares = this.getMiddlewares(Router);
     const requestMappings = this.getRequestMappings(Router.prototype);
 
@@ -54,7 +54,7 @@ export class MyRouter {
         allMiddlewares.push(ParamValidate(validBodySchame, { type: 'body' }));
       }
 
-      this.koaRouterRegisterHelper(requestMethod)(requestPath, ...allMiddlewares, executionContex.create(prop));
+      this.koaRouterRegisterHelper(requestMethod)(requestPath, ...allMiddlewares, this.createExecutionFn(routerInstance, prop));
     });
   }
 
@@ -80,5 +80,34 @@ export class MyRouter {
         Reflect.hasMetadata(METADATA_ROUTER_METHOD, router, prop)
       );
     });
+  }
+
+  private createExecutionFn(router: any, propertyKey: string): any {
+    const routerParams: any[] =
+      Reflect.getMetadata(METADATA_ROUTER_PARAMS, router, propertyKey) || [];
+
+    return async (ctx: any) => {
+      const results: any[] = [];
+      routerParams.forEach((param: { index: number; convertFunc: (ctx: Koa.Context, data?: any) => any; data: any }) => {
+        results[param.index] = this.convertParamDecorator(param, ctx);
+      });
+
+      try {
+        const response = await router[propertyKey].call(router, ...results);
+        if (ctx.body === undefined) {
+          ctx.body = response;
+        }
+      } catch (error) {
+        ctx.app.emit('error', error, ctx);
+        throw error;
+      }
+    };
+  }
+
+  private convertParamDecorator(
+    param: { index: number; convertFunc: (ctx: Koa.Context, data?: any) => any; data: any },
+    ctx: Koa.Context | any,
+  ): any {
+    return param.convertFunc(ctx, param.data);
   }
 }
