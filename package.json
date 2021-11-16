@@ -1,5 +1,5 @@
 {
-  "name": "koawa",
+  "name": "koast",
   "version": "1.0.0",
   "description": "A suite of Koa utilities allowing for quicker bootstrapping.",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zrk1993/koawa.git"
+    "url": "git+https://github.com/zrk1993/koast.git"
   },
   "keywords": [
     "koa"
@@ -18,9 +18,9 @@
   "author": "kun",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zrk1993/koawa/issues"
+    "url": "https://github.com/zrk1993/koast/issues"
   },
-  "homepage": "https://github.com/zrk1993/koawa#readme",
+  "homepage": "https://github.com/zrk1993/koast#readme",
   "dependencies": {
     "joi": "^17.4.2",
     "joi-to-json": "^2.1.1",

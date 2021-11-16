@@ -4,7 +4,7 @@ import bodyparser from 'koa-bodyparser';
 import { MyRouter } from './router';
 import { useSwaggerApi } from './middlewares/swagger-doc';
 
-export class Koawa extends Koa {
+export class Koast extends Koa {
 
   constructor(options = {}) {
     super();

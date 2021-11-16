@@ -1,8 +1,8 @@
-import { Koawa } from '../lib/index';
+import { Koast } from '../lib/index';
 import routers from './controller';
 
 async function main() {
-  const app = new Koawa();
+  const app = new Koast();
 
   app.useSwagger([routers])
   console.log('swagger address http://localhost:3000/swagger-ui/index.html')

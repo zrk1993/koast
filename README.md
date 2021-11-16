@@ -1,22 +1,22 @@
-# [koawa](https://github.com/zrk1993/koawa)
+# [koast](https://github.com/zrk1993/koast)
 
 A nodejs web framework, 对koa简单包装，装饰风格，内置开发常用中间件，使用typescript编写
 
 ## 快速开始
 
 ``` bash
-npm install git+https://github.com/zrk1993/koawa.git
+npm install git+https://github.com/zrk1993/koast.git
 ```
 
 
 #### 创建应用实例
 
 ```typescript main.ts
-import { Koawa } from '../lib/index';
+import { Koast } from '../lib/index';
 import routers from './controller';
 
 async function main() {
-  const app = new Koawa();
+  const app = new Koast();
 
   app.useSwagger([routers])
   console.log('swagger address http://localhost:3000/swagger-ui/index.html')
@@ -151,7 +151,7 @@ test(@Body() Body: any, @Query() query: any) {}
 ### 自定义装饰器
 
 ```typescript
-import { Use, Description } from 'koawa';
+import { Use, Description } from 'koast';
 export default function Role(...roles: string[]) {
   const role = Use(async (ctx: Koa.Context, next: () => void) => {
     const sql = `
