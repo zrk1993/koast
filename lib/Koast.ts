@@ -7,7 +7,7 @@ import { useSwaggerApi } from './middlewares/swagger-doc';
 export class Koast extends Koa {
 
   constructor(options = {}) {
-    super();
+    super(options);
     this.use(bodyparser())
   }
 
