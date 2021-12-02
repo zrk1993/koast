@@ -5,7 +5,7 @@ A nodejs web framework, 对koa简单包装，装饰风格，内置开发常用�
 ## 快速开始
 
 ``` bash
-npm install git+https://github.com/zrk1993/koast.git
+git clone https://github.com/zrk1993/koast-start.git
 ```
 
 
