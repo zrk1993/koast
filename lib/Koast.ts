@@ -8,7 +8,7 @@ export class Koast extends Koa {
 
   constructor(options = {}) {
     super(options);
-    this.use(bodyparser())
+    super.use(bodyparser())
   }
 
   public useRouter(routers: any[]) {

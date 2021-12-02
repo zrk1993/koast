@@ -11,7 +11,7 @@ const swagger_doc_1 = require("./middlewares/swagger-doc");
 class Koast extends koa_1.default {
     constructor(options = {}) {
         super(options);
-        this.use((0, koa_bodyparser_1.default)());
+        super.use((0, koa_bodyparser_1.default)());
     }
     useRouter(routers) {
         const myRouter = new router_1.MyRouter(routers);
