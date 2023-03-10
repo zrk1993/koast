@@ -80,7 +80,7 @@ const api: IAPI = {
   },
   //  the domain of the service
   //  host: 127.0.0.1:3457
-  schemes: ['http'],
+  schemes: ['http', 'https'],
   basePath: '',
   consumes: ['application/json', 'application/x-www-form-urlencoded'],
   produces: ['application/json'],

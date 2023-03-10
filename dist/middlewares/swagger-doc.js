@@ -68,7 +68,7 @@ const api = {
         title: '接口文档',
         version: '1.0.0',
     },
-    schemes: ['http'],
+    schemes: ['http', 'https'],
     basePath: '',
     consumes: ['application/json', 'application/x-www-form-urlencoded'],
     produces: ['application/json'],
