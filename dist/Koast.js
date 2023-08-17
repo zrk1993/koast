@@ -13,8 +13,8 @@ class Koast extends koa_1.default {
         super(options);
         super.use((0, koa_bodyparser_1.default)());
     }
-    useRouter(routers) {
-        const myRouter = new router_1.MyRouter(routers);
+    useRouter(routers, opt) {
+        const myRouter = new router_1.MyRouter(routers, opt);
         myRouter.routes(this);
     }
     useSwagger(routers) {

@@ -16,9 +16,9 @@ export class MyRouter {
   private readonly routers: any[];
   private readonly koaRouter: KoaRouter;
 
-  constructor(routers: any[]) {
+  constructor(routers: any[], opt?: { prefix: string }) {
     this.routers = routers;
-    this.koaRouter = new KoaRouter();
+    this.koaRouter = new KoaRouter(opt);
   }
 
   routes(koa: Koa) {

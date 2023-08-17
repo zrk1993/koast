@@ -18,9 +18,9 @@ const koa_router_1 = __importDefault(require("koa-router"));
 const param_validate_1 = require("./middlewares/param-validate");
 const constants_1 = require("./constants");
 class MyRouter {
-    constructor(routers) {
+    constructor(routers, opt) {
         this.routers = routers;
-        this.koaRouter = new koa_router_1.default();
+        this.koaRouter = new koa_router_1.default(opt);
     }
     routes(koa) {
         this.routers.forEach((router) => {

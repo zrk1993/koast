@@ -20,8 +20,8 @@ export class Koast extends Koa {
     super.use(bodyparser())
   }
 
-  public useRouter(routers: any[]) {
-    const myRouter = new MyRouter(routers);
+  public useRouter(routers: any[], opt?: { prefix: string }) {
+    const myRouter = new MyRouter(routers, opt);
     myRouter.routes(this);
   }
 
