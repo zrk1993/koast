@@ -4,8 +4,9 @@ import bodyparser from 'koa-bodyparser';
 import { MyRouter } from './router';
 import { useSwaggerApi } from './middlewares/swagger-doc';
 
-interface options {
+interface IOptions {
   env?: string | undefined,
+  prefix?: string,
   keys?: string[] | undefined,
   proxy?: boolean | undefined,
   subdomainOffset?: number | undefined,
@@ -14,21 +15,23 @@ interface options {
 }
 
 export class Koast extends Koa {
+  private readonly options: IOptions;
 
-  constructor(options: options = {}) {
+  constructor(options: IOptions = {}) {
     super(options);
     super.use(bodyparser())
+    this.options = options
   }
 
-  public useRouter(routers: any[], opt?: { prefix: string }) {
-    const myRouter = new MyRouter(routers, opt);
+  public useRouter(routers: any[]) {
+    const myRouter = new MyRouter(routers, { prefix: this.options.prefix });
     myRouter.routes(this);
   }
 
-  public useSwagger(routers: any[], opt?: { prefix: string }) {
+  public useSwagger(routers: any[]) {
     useSwaggerApi(this, routers, {
       url: '/swagger-api/doc',
-      prefix: opt.prefix,
+      prefix: this.options.prefix
     });
   }
 }
