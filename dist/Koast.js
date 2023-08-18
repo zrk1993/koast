@@ -17,10 +17,10 @@ class Koast extends koa_1.default {
         const myRouter = new router_1.MyRouter(routers, opt);
         myRouter.routes(this);
     }
-    useSwagger(routers) {
+    useSwagger(routers, opt) {
         (0, swagger_doc_1.useSwaggerApi)(this, routers, {
             url: '/swagger-api/doc',
-            prefix: '/swagger-ui',
+            prefix: opt.prefix,
         });
     }
 }

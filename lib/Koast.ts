@@ -25,10 +25,10 @@ export class Koast extends Koa {
     myRouter.routes(this);
   }
 
-  public useSwagger(routers: any[]) {
+  public useSwagger(routers: any[], opt?: { prefix: string }) {
     useSwaggerApi(this, routers, {
       url: '/swagger-api/doc',
-      prefix: '/swagger-ui',
+      prefix: opt.prefix,
     });
   }
 }

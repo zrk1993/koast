@@ -35,6 +35,7 @@ class MyRouter {
         const requestMappings = this.getRequestMappings(Router.prototype);
         requestMappings.forEach(prop => {
             const requestPath = [
+                this.prefix,
                 Reflect.getMetadata(constants_1.METADATA_ROUTER_PATH, Router),
                 Reflect.getMetadata(constants_1.METADATA_ROUTER_PATH, Router.prototype, prop),
             ].join('').replace('//', '/');

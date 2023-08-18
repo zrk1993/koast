@@ -25,7 +25,7 @@ export interface ISwaggerOption {
 export function useSwaggerApi(app: any, routers: any[], swaggerConfig: ISwaggerOption) {
   const pathToSwaggerUi = SwaggerUIDist.getAbsoluteFSPath();
   app.use(
-    mount((swaggerConfig.prefix || '/api') + '/index.html', async (ctx: Koa.Context) => {
+    mount('/swagger-ui/index.html', async (ctx: Koa.Context) => {
       const d: string = await new Promise((resolve, reject) => {
         fs.readFile(path.join(pathToSwaggerUi, 'index.html'), (err, data) => {
           if (err) {
@@ -45,7 +45,7 @@ export function useSwaggerApi(app: any, routers: any[], swaggerConfig: ISwaggerO
   );
   app.use(
     mount(
-      swaggerConfig.prefix || '/api',
+      '/swagger-ui',
       koaStatic(pathToSwaggerUi, {
         maxage: 8640000,
       }),
@@ -73,7 +73,7 @@ interface IPath {
 }
 
 const api: IAPI = {
-  swagger: '2.0',
+  swagger: '1.0',
   info: {
     title: '接口文档',
     version: '1.0.0',
@@ -109,6 +109,7 @@ function generateApi(controllers: any[], swaggerConfig: ISwaggerOption) {
 
     requestMappings.forEach(prop => {
       const requestPath: string = [
+        swaggerConfig.prefix || '',
         Reflect.getMetadata(METADATA_ROUTER_PATH, Controller),
         Reflect.getMetadata(METADATA_ROUTER_PATH, Controller.prototype, prop),
       ]

@@ -15,6 +15,7 @@ import {
 export class MyRouter {
   private readonly routers: any[];
   private readonly koaRouter: KoaRouter;
+  private readonly prefix: string;
 
   constructor(routers: any[], opt?: { prefix: string }) {
     this.routers = routers;
@@ -37,6 +38,7 @@ export class MyRouter {
 
     requestMappings.forEach(prop => {
       const requestPath: string = [
+        this.prefix,
         Reflect.getMetadata(METADATA_ROUTER_PATH, Router),
         Reflect.getMetadata(METADATA_ROUTER_PATH, Router.prototype, prop),
       ].join('').replace('//', '/');

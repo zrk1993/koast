@@ -42,7 +42,7 @@ const constants_1 = require("../constants");
 const convert = require('joi-to-json');
 function useSwaggerApi(app, routers, swaggerConfig) {
     const pathToSwaggerUi = SwaggerUIDist.getAbsoluteFSPath();
-    app.use((0, koa_mount_1.default)((swaggerConfig.prefix || '/api') + '/index.html', (ctx) => __awaiter(this, void 0, void 0, function* () {
+    app.use((0, koa_mount_1.default)('/swagger-ui/index.html', (ctx) => __awaiter(this, void 0, void 0, function* () {
         const d = yield new Promise((resolve, reject) => {
             fs.readFile(path.join(pathToSwaggerUi, 'index.html'), (err, data) => {
                 if (err) {
@@ -57,13 +57,13 @@ function useSwaggerApi(app, routers, swaggerConfig) {
     app.use((0, koa_mount_1.default)(swaggerConfig.url, (ctx) => {
         ctx.body = generateApi(routers, swaggerConfig);
     }));
-    app.use((0, koa_mount_1.default)(swaggerConfig.prefix || '/api', (0, koa_static_1.default)(pathToSwaggerUi, {
+    app.use((0, koa_mount_1.default)('/swagger-ui', (0, koa_static_1.default)(pathToSwaggerUi, {
         maxage: 8640000,
     })));
 }
 exports.useSwaggerApi = useSwaggerApi;
 const api = {
-    swagger: '2.0',
+    swagger: '1.0',
     info: {
         title: '接口文档',
         version: '1.0.0',
@@ -90,6 +90,7 @@ function generateApi(controllers, swaggerConfig) {
         }
         requestMappings.forEach(prop => {
             const requestPath = [
+                swaggerConfig.prefix || '',
                 Reflect.getMetadata(constants_1.METADATA_ROUTER_PATH, Controller),
                 Reflect.getMetadata(constants_1.METADATA_ROUTER_PATH, Controller.prototype, prop),
             ]
