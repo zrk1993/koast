@@ -12,15 +12,16 @@ class Koast extends koa_1.default {
     constructor(options = {}) {
         super(options);
         super.use((0, koa_bodyparser_1.default)());
+        this.options = options;
     }
-    useRouter(routers, opt) {
-        const myRouter = new router_1.MyRouter(routers, opt);
+    useRouter(routers) {
+        const myRouter = new router_1.MyRouter(routers, { prefix: this.options.prefix });
         myRouter.routes(this);
     }
-    useSwagger(routers, opt) {
+    useSwagger(routers) {
         (0, swagger_doc_1.useSwaggerApi)(this, routers, {
             url: '/swagger-api/doc',
-            prefix: opt.prefix,
+            prefix: this.options.prefix
         });
     }
 }
