@@ -63,7 +63,7 @@ function useSwaggerApi(app, routers, swaggerConfig) {
 }
 exports.useSwaggerApi = useSwaggerApi;
 const api = {
-    swagger: '1.0',
+    swagger: '2.0',
     info: {
         title: '接口文档',
         version: '1.0.0',
